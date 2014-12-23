@@ -35,15 +35,15 @@ DatePicker.prototype.show = function(options, cb) {
 		cancelButton: true,
 		windowTitle: "[default]"
 	};
-
+	
 	for (var key in defaults) {
 		if (typeof options[key] !== "undefined") {
 			defaults[key] = options[key];
 		}
 	}
-
+	
 	//this._callback = cb;
-
+	
 	var callback = function(message) {
 		if ( message == "clear" || message == "cancel" ) {
 			cb(message);
