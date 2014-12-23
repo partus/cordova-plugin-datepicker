@@ -38,32 +38,35 @@ import android.os.Build;
 @SuppressWarnings("deprecation")
 @SuppressLint("NewApi")
 public class DatePickerPlugin extends CordovaPlugin {
-
+	
 	private static final String ACTION_DATE = "date";
 	private static final String ACTION_TIME = "time";
 	private final String pluginName = "DatePickerPlugin";
-
+	
 	@Override
 	public boolean execute(final String action, final JSONArray data, final CallbackContext callbackContext) {
 		Log.d(pluginName, "DatePicker called with options: " + data);
 		boolean result = false;
-
+		
 		this.show(data, callbackContext);
 		result = true;
-
+		
 		return result;
 	}
-
+	
 	public synchronized void show(final JSONArray data, final CallbackContext callbackContext) {
 		final DatePickerPlugin datePickerPlugin = this;
 		final Context currentCtx = cordova.getActivity();
 		final Calendar c = Calendar.getInstance();
 		final Runnable runnable;
-
+		
 		String doneBLabel = "Done";
 		String cancelBLabel = "Cancel";
 		String clearBLabel = "Clear";
 		Boolean clearButton = false;
+		
+		Boolean cancelButton = true;
+		String windowTitle = "[default]";
 		
 		String action = "date";
 		long minDateLong = 0, maxDateLong = 0;
@@ -89,7 +92,10 @@ public class DatePickerPlugin extends CordovaPlugin {
 			cancelBLabel = obj.getString("cancelButtonLabel");
 			clearBLabel = obj.getString("clearButtonLabel");
 			clearButton = obj.getBoolean("clearButton");
-
+			
+			cancelButton = obj.getBoolean("cancelButton");
+			windowTitle = obj.getString("windowTitle");
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -108,7 +114,10 @@ public class DatePickerPlugin extends CordovaPlugin {
 		final String fCancelBLabel = cancelBLabel;
 		final String fClearBLabel = clearBLabel;
 		final boolean fClearButton = clearButton;
-
+		
+		final boolean fCancelButton = cancelButton;
+		final String fWindowTitle = windowTitle;
+		
 		if (ACTION_TIME.equalsIgnoreCase(action)) {
 			runnable = new Runnable() {
 				@Override
@@ -162,16 +171,19 @@ public class DatePickerPlugin extends CordovaPlugin {
 						if(maxDate > 0 && maxDate > minDate) {
 							dp.setMaxDate(maxDate);
 						}
-
-						dateDialog.setCancelable(true);
+						
+						dateDialog.setCancelable(fCancelButton);
 						dateDialog.setCanceledOnTouchOutside(false);
 						dateDialog.setButton(DialogInterface.BUTTON_POSITIVE, fDoneBLabel, dateDialog);
-						dateDialog.setButton(DialogInterface.BUTTON_NEGATIVE, fCancelBLabel, new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								callbackContext.success("cancel");
-							}
-						});
+						
+						if(fCancelButton == true) {
+							dateDialog.setButton(DialogInterface.BUTTON_NEGATIVE, fCancelBLabel, new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									callbackContext.success("cancel");
+								}
+							});
+						}
 						if(fClearButton == true) {
 							dateDialog.setButton(DialogInterface.BUTTON_NEUTRAL, fClearBLabel, new DialogInterface.OnClickListener() {
 								@Override
@@ -236,6 +248,11 @@ public class DatePickerPlugin extends CordovaPlugin {
 								}
 							});
 						}
+					}
+					
+					if (fWindowTitle != "[default]") {
+						
+						dateDialog.setTitle(fWindowTitle);
 					}
 					dateDialog.show();
 				}
