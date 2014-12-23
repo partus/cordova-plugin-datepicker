@@ -208,7 +208,7 @@ var options = {
   date: new Date(),
   mode: 'date',
   cancelButton: false,
-  windowTitle: 'Set your birthdate'
+  windowTitle: 'Set your birthday'
 };
 
 datePicker.show(options, function(date){
