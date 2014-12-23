@@ -9,6 +9,8 @@ This is a combined version of DatePicker iOS and Android plugin for Cordova/Phon
 
 - Original combined version: https://github.com/nicholasareed/cordova-plugin-datepicker
 
+- Original combined version: https://github.com/Sharinglabs/cordova-plugin-datepicker
+
 ## Installation
 
 1) Make sure that you have [Node](http://nodejs.org/) and [Cordova CLI](https://github.com/apache/cordova-cli) or [PhoneGap's CLI](https://github.com/mwbrooks/phonegap-cli) installed on your machine.
@@ -16,12 +18,12 @@ This is a combined version of DatePicker iOS and Android plugin for Cordova/Phon
 2) Add a plugin to your project using Cordova CLI:
 
 ```bash
-cordova plugin add https://github.com/Sharinglabs/cordova-plugin-datepicker
+cordova plugin add https://github.com/okaybmd/cordova-plugin-datepicker
 ```
 Or using PhoneGap CLI:
 
 ```bash
-phonegap local plugin add https://github.com/Sharinglabs/cordova-plugin-datepicker
+phonegap local plugin add https://github.com/okaybmd/cordova-plugin-datepicker
 ```
 
 3a) Register plugin within `config.xml` of your app
@@ -32,14 +34,14 @@ phonegap local plugin add https://github.com/Sharinglabs/cordova-plugin-datepick
 </feature>
 
 <feature name="DatePickerPlugin">
-    <param name="android-package" value="com.sharinglabs.cordova.plugin.datepicker.DatePickerPlugin"/>
+    <param name="android-package" value="com.okaybmd.cordova.plugin.datepicker.DatePickerPlugin"/>
 </feature>
 ```
 
 3b) If you are using [PhoneGap build service](https://build.phonegap.com/) add to `config.xml`
 
 ```xml
-<gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" />
+<gap:plugin name="com.okaybmd.cordova.plugin.datepicker" />
 ```
 
 ## Usage
