@@ -15,8 +15,6 @@ function DatePicker() {
  */
 DatePicker.prototype.show = function(options, cb) {
   	
-  	console.log('INIT bmd 2.01');
-  	
 	if (options.date) {
 		options.date = (options.date.getMonth() + 1) + "/" + 
 					   (options.date.getDate()) + "/" + 
@@ -33,7 +31,9 @@ DatePicker.prototype.show = function(options, cb) {
 		doneButtonLabel: "Done",
 		cancelButtonLabel: "Cancel",
 		clearButtonLabel: "Clear",
-		clearButton: false
+		clearButton: false,
+		cancelButton: true,
+		windowTitle: "[default]"
 	};
 
 	for (var key in defaults) {
