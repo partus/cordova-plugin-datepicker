@@ -66,6 +66,13 @@ Values: `date` | `time` | `datetime` (datetime only works starting Android 4.4)
 
 Default: `date`
 
+### windowTitle - Android (date only mode)
+Custom window title (by default, Android will show the selected date).
+
+Type: String
+
+Default: `[default]` (will show selected date)
+
 ### date - iOS, Android
 Selected date.
 
@@ -132,6 +139,13 @@ Hex color of cancel button.
 Type: String
 
 Default: `#000000`
+
+### cancelButton - Android
+Show or hide cancel button
+
+Type: Boolean
+
+Default: true
 
 ### clearButtonLabel - iOS, Android
 Label of clear button.
