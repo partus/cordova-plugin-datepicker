@@ -188,12 +188,27 @@ Default: `0`
 - PhoneGap 3.0 or newer / Cordova 3.0 or newer
 - Android 2.3.1 or newer / iOS 5 or newer
 
-## Example
+## Basic Example
 
 ```js
 var options = {
   date: new Date(),
   mode: 'date'
+};
+
+datePicker.show(options, function(date){
+  alert("date result " + date);  
+});
+```
+
+## Advanced Example
+
+```js
+var options = {
+  date: new Date(),
+  mode: 'date',
+  cancelButton: false,
+  windowTitle: 'Set your birthdate'
 };
 
 datePicker.show(options, function(date){
