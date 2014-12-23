@@ -41,7 +41,8 @@ phonegap local plugin add https://github.com/okaybmd/cordova-plugin-datepicker
 3b) If you are using [PhoneGap build service](https://build.phonegap.com/) add to `config.xml`
 
 ```xml
-<gap:plugin name="com.okaybmd.cordova.plugin.datepicker" />
+<gap:plugin name="com.okaybmd.cordova.plugin.datepicker" version="1.3.0" source="plugins.cordova.io" />
+	
 ```
 
 ## Usage
