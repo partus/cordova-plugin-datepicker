@@ -14,7 +14,9 @@ function DatePicker() {
  * show - true to show the ad, false to hide the ad
  */
 DatePicker.prototype.show = function(options, cb) {
-  
+  	
+  	console.log('INIT bmd 2.01');
+  	
 	if (options.date) {
 		options.date = (options.date.getMonth() + 1) + "/" + 
 					   (options.date.getDate()) + "/" + 
