@@ -43,6 +43,9 @@ public class DatePickerPlugin extends CordovaPlugin {
 	private static final String ACTION_TIME = "time";
 	private final String pluginName = "DatePickerPlugin";
 	
+	private String mainWindowTitle = "[default]";
+	private DatePickerDialog dateDialog;
+	
 	@Override
 	public boolean execute(final String action, final JSONArray data, final CallbackContext callbackContext) {
 		Log.d(pluginName, "DatePicker called with options: " + data);
@@ -70,7 +73,7 @@ public class DatePickerPlugin extends CordovaPlugin {
 		
 		String action = "date";
 		long minDateLong = 0, maxDateLong = 0;
-
+		
 		int month = -1, day = -1, year = -1, hour = -1, min = -1;
 		try {
 			JSONObject obj = data.getJSONObject(0);
@@ -95,6 +98,8 @@ public class DatePickerPlugin extends CordovaPlugin {
 			
 			cancelButton = obj.getBoolean("cancelButton");
 			windowTitle = obj.getString("windowTitle");
+			
+			mainWindowTitle = windowTitle;
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -161,8 +166,7 @@ public class DatePickerPlugin extends CordovaPlugin {
 				@Override
 				public void run() {
 					final DateSetListener dateSetListener = new DateSetListener(datePickerPlugin, callbackContext);
-					final DatePickerDialog dateDialog = new DatePickerDialog(currentCtx, dateSetListener, mYear,
-							mMonth, mDay);
+					dateDialog = new DatePickerDialog(currentCtx, dateSetListener, mYear, mMonth, mDay);
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 						DatePicker dp = dateDialog.getDatePicker();
 						if(minDate > 0) {
@@ -283,14 +287,14 @@ public class DatePickerPlugin extends CordovaPlugin {
 			String returnDate = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
 			callbackContext.success(returnDate);
 			//mDialog.setTitle("Hello");
-			Log.d(pluginName, "fWindowTitle: " + fWindowTitle);
-			if (fWindowTitle != "[default]") {
+			Log.d(pluginName, "mainWindowTitle: " + mainWindowTitle);
+			if (mainWindowTitle != "[default]") {
 				
-				try { dateDialog.setTitle(fWindowTitle); Log.d(pluginName, "ok1"); }
+				try { dateDialog.setTitle(mainWindowTitle); Log.d(pluginName, "ok1"); }
 				catch (Exception e) { Log.d(pluginName, "error1: " + e); }
 				
-				try { mDialog.setTitle(fWindowTitle); Log.d(pluginName, "ok2"); }
-				catch (Exception e) { Log.d(pluginName, "error2: " + e); }
+				//try { mDialog.setTitle(mainWindowTitle); Log.d(pluginName, "ok2"); }
+				//catch (Exception e) { Log.d(pluginName, "error2: " + e); }
 				
 			}
 		}
