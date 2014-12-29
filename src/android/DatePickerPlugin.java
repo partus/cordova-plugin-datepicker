@@ -282,6 +282,17 @@ public class DatePickerPlugin extends CordovaPlugin {
 		public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
 			String returnDate = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
 			callbackContext.success(returnDate);
+			//mDialog.setTitle("Hello");
+			Log.d(pluginName, "fWindowTitle: " + fWindowTitle);
+			if (fWindowTitle != "[default]") {
+				
+				try { dateDialog.setTitle(fWindowTitle); Log.d(pluginName, "ok1"); }
+				catch (Exception e) { Log.d(pluginName, "error1: " + e); }
+				
+				try { mDialog.setTitle(fWindowTitle); Log.d(pluginName, "ok2"); }
+				catch (Exception e) { Log.d(pluginName, "error2: " + e); }
+				
+			}
 		}
 	}
 
