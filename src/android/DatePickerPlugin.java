@@ -131,7 +131,7 @@ public class DatePickerPlugin extends CordovaPlugin {
 					final TimePickerDialog timeDialog = new TimePickerDialog(currentCtx, timeSetListener, mHour,
 							mMinutes, true);
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-						timeDialog.setCancelable(fCancelButton); //Fixed in 1.3.2
+						timeDialog.setCancelable(false); //Fixed in 1.3.2 //was fCancelButton in 1.3.3
 						timeDialog.setCanceledOnTouchOutside(false);
 						timeDialog.setButton(DialogInterface.BUTTON_POSITIVE, fDoneBLabel, timeDialog);
 						if(fClearButton == true) {
@@ -176,10 +176,11 @@ public class DatePickerPlugin extends CordovaPlugin {
 							dp.setMaxDate(maxDate);
 						}
 						
-						dateDialog.setCancelable(fCancelButton);
+						dateDialog.setCancelable(false); //was fCancelButton in 1.3.3
 						dateDialog.setCanceledOnTouchOutside(false);
 						dateDialog.setButton(DialogInterface.BUTTON_POSITIVE, fDoneBLabel, dateDialog);
 						
+						/* COMMENTED IN 1.3.4
 						if(fCancelButton == true) {
 							dateDialog.setButton(DialogInterface.BUTTON_NEGATIVE, fCancelBLabel, new DialogInterface.OnClickListener() {
 								@Override
@@ -196,6 +197,7 @@ public class DatePickerPlugin extends CordovaPlugin {
 								}
 							});
 						}
+						*/
 						dateDialog.setOnKeyListener(new Dialog.OnKeyListener() {
 							@Override
 							public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
