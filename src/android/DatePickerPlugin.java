@@ -68,7 +68,7 @@ public class DatePickerPlugin extends CordovaPlugin {
 		String clearBLabel = "Clear";
 		Boolean clearButton = false;
 		
-		Boolean cancelButton = true;
+		Boolean cancelButton = false;
 		String windowTitle = "[default]";
 		
 		String action = "date";
