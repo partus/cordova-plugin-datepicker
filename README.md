@@ -218,3 +218,20 @@ datePicker.show(options, function(date){
   alert("date result " + date);  
 });
 ```
+
+## Plugin Default Options
+
+```js
+var defaults = {
+		mode : 'date',
+		date : '',
+		minDate: 0,
+		maxDate: 0,
+		doneButtonLabel: "Done",
+		cancelButtonLabel: "Cancel",
+		clearButtonLabel: "Clear",
+		clearButton: false,
+		cancelButton: true,
+		windowTitle: "[default]"
+	};
+```
