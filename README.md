@@ -231,7 +231,12 @@ var defaults = {
 		cancelButtonLabel: "Cancel",
 		clearButtonLabel: "Clear",
 		clearButton: false,
-		cancelButton: true,
+		cancelButton: false,
 		windowTitle: "[default]"
 	};
 ```
+
+## Version updates
+
+v1.3.2 - fixed cancel button (still not working)
+v1.3.3 - set show cancel button to false by default
