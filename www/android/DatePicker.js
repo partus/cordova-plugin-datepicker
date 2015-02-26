@@ -32,7 +32,7 @@ DatePicker.prototype.show = function(options, cb) {
 		cancelButtonLabel: "Cancel",
 		clearButtonLabel: "Clear",
 		clearButton: false,
-		cancelButton: true,
+		cancelButton: false,
 		windowTitle: "[default]"
 	};
 	
