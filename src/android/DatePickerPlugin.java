@@ -23,6 +23,7 @@ import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
 import android.content.DialogInterface;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.DatePicker;
@@ -32,6 +33,7 @@ import android.widget.TimePicker;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+
 
 import android.os.Build;
 
@@ -167,6 +169,17 @@ public class DatePickerPlugin extends CordovaPlugin {
 				public void run() {
 					final DateSetListener dateSetListener = new DateSetListener(datePickerPlugin, callbackContext);
 					dateDialog = new DatePickerDialog(currentCtx, dateSetListener, mYear, mMonth, mDay);
+					dateDialog.setButton(DialogInterface.BUTTON_NEGATIVE, fCancelBLabel, new DialogInterface.OnClickListener() 
+							{
+								@Override
+								public void onClick(DialogInterface dialog, int which) 
+									{
+									    if (which == DialogInterface.BUTTON_NEGATIVE) {
+											callbackContext.success("CANCEL");
+										}
+									}
+								
+							});
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 						DatePicker dp = dateDialog.getDatePicker();
 						if(minDate > 0) {
